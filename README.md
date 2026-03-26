@@ -14,6 +14,19 @@ It also includes AI integration. This can be used to automatically name git comm
 ## Installation and setup
 
 To install, first clone the repository, and make zap.py executable or add it to your PATH.
+```bash
+git clone https://github.com/Aiden-Jun/zap.git
+```
+
+MacOS
+```bash
+pip3 install -e 
+```
+
+Windows
+```bash
+pip install -e
+```
 
 ### Set a model
 In `mcalls.json`, edit the `model` variable to whatever Ollama model you want to use. The default is `qwen3.5:0.8b`.
