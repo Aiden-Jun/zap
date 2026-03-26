@@ -197,7 +197,7 @@ def run_zap(name: str, args: list[str]):
         run_shell(cmd)
 
 
-if __name__ == "__main__":
+def main():
     if len(sys.argv) < 2:
         print("Usage: zap <command> [args...]")
         sys.exit(1)
@@ -205,3 +205,7 @@ if __name__ == "__main__":
     zap_name = sys.argv[1]
     zap_args = sys.argv[2:]
     run_zap(zap_name, zap_args)
+
+
+if __name__ == "__main__":
+    main()
