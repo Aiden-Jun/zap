@@ -103,7 +103,7 @@ Define a mcall in `mcalls.json`:
 Use it in a zap:
 ```json
 {
-  "commit-msg": ["echo %g0(%o(git diff --staged))"]
+  "commit-msg": ["echo %g0(%o(git diff))"]
 }
 ```
 ```bash

@@ -10,15 +10,18 @@ DEFAULT_MODEL = "qwen3.5:0.8b"
 ZAPS_FILE = "zaps.json"
 MCALLS_FILE = "mcalls.json"
 
+_ZAP_DIR = os.path.dirname(os.path.abspath(__file__))
+ZAPS_PATH = os.path.join(_ZAP_DIR, ZAPS_FILE)
+MCALLS_PATH = os.path.join(_ZAP_DIR, MCALLS_FILE)
 
-if os.path.exists(ZAPS_FILE):
-    with open(ZAPS_FILE, "r") as f:
+if os.path.exists(ZAPS_PATH):
+    with open(ZAPS_PATH, "r") as f:
         zaps = json.load(f)
 else:
     zaps = {}
 
-if os.path.exists(MCALLS_FILE):
-    with open(MCALLS_FILE, "r") as f:
+if os.path.exists(MCALLS_PATH):
+    with open(MCALLS_PATH, "r") as f:
         mcalls = json.load(f)
 else:
     mcalls = {}
