@@ -1,3 +1,4 @@
 {
-  "model": "qwen3.5:0.8b"
+  "model": "qwen3.5:0.8b",
+  "0": "Only output the message, nothing else. Suggest a concise git commit message for: %0"
 }

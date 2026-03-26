@@ -1,1 +1,3 @@
-{}
+{
+  "commit-msg": ["echo %g0(%o(git diff --staged))"]
+}

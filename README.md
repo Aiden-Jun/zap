@@ -108,7 +108,7 @@ Use it in a zap:
 ```
 ```bash
 git add .
-python zap.py commit-msg
+zap commit-msg
 ```
 
 This can be taken further by making an all-in-one zap.
