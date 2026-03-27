@@ -1,3 +1,4 @@
 {
-  "commit-msg": ["echo %g0(%o(git diff))"]
+  "commit-msg": ["echo %g0(%o(git diff))"],
+  "fullpush": ["git add .", "git commit -m \"%0\"", "git push origin main"]
 }

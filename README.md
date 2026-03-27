@@ -29,7 +29,7 @@ pip install -e
 ```
 
 ### Set a model
-In `mcalls.json`, edit the `model` variable to whatever Ollama model you want to use. The default is `qwen3.5:0.8b`.
+In `settings.json`, edit the `model` variable to whatever Ollama model you want to use. The default is `qwen3.5:0.8b`.
 
 
 ## Usage
