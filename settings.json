@@ -1,0 +1,4 @@
+{
+  "model": "qwen3.5:0.8b",
+  "double_check_ai_output": true
+}

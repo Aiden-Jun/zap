@@ -95,7 +95,6 @@ The output of the nested command is captured and inserted into the parent comman
 Define a mcall in `mcalls.json`:
 ```json
 {
-  "model": "qwen3.5:0.8b",
   "0": "Suggest a concise git commit message for: %0"
 }
 ```

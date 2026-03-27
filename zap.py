@@ -9,10 +9,12 @@ import os
 DEFAULT_MODEL = "qwen3.5:0.8b"
 ZAPS_FILE = "zaps.json"
 MCALLS_FILE = "mcalls.json"
+SETTINGS_FILE = "settings.json"
 
 _ZAP_DIR = os.path.dirname(os.path.abspath(__file__))
 ZAPS_PATH = os.path.join(_ZAP_DIR, ZAPS_FILE)
 MCALLS_PATH = os.path.join(_ZAP_DIR, MCALLS_FILE)
+SETTINGS_PATH = os.path.join(_ZAP_DIR, SETTINGS_FILE)
 
 if os.path.exists(ZAPS_PATH):
     with open(ZAPS_PATH, "r") as f:
@@ -25,6 +27,12 @@ if os.path.exists(MCALLS_PATH):
         mcalls = json.load(f)
 else:
     mcalls = {}
+
+if os.path.exists(SETTINGS_PATH):
+    with open(SETTINGS_PATH, "r") as f:
+        settings = json.load(f)
+else:
+    settings = {}
 
 
 def run_shell(command: str) -> str:
@@ -158,7 +166,7 @@ def replace_g(cmd: str) -> str:
     result = ""
     i = 0
 
-    current_model = mcalls.get("model", DEFAULT_MODEL)
+    current_model = settings.get("model", DEFAULT_MODEL)
 
     while i < len(cmd):
         match = pattern.match(cmd, i)
@@ -191,6 +199,16 @@ def replace_g(cmd: str) -> str:
                 print(f"[WARN] Unreplaced mcall args in prompt: {unreplaced}", file=sys.stderr)
 
             ai_output = run_ai(prompt, current_model)
+
+            if settings.get("double_check_ai_output"):
+                approval = input("[Double check] Approve AI output? [y/n]: ")
+                while approval.lower() not in ["y", "n"]:
+                    print(f"[WARN] {approval} is not recognized")
+                    approval = input("[Double check] Approve AI output? [y/n]: ")
+                if approval.lower() == "n":
+                    print("[Double check] AI output rejected")
+                    quit()
+
             result += ai_output
             i = close + 1
         else:
