@@ -30,14 +30,33 @@ else:
 def run_shell(command: str) -> str:
     if not command.strip():
         return ""
+
     print(f"[RUN] {command}")
+
     try:
-        result = subprocess.run(command, shell=True, capture_output=True, text=True)
-        if result.stdout:
-            print(result.stdout.strip())
-        if result.stderr:
-            print(result.stderr.strip(), file=sys.stderr)
-        return result.stdout.strip()
+        process = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            stdin=sys.stdin,
+            text=True,
+            bufsize=1
+        )
+
+        output_lines = []
+
+        for line in process.stdout:
+            print(line, end="")
+            output_lines.append(line)
+
+        for line in process.stderr:
+            print(line, end="", file=sys.stderr)
+
+        process.wait()
+
+        return "".join(output_lines).strip()
+
     except Exception as e:
         print(f"[ERROR] Shell command failed: {e}", file=sys.stderr)
         return ""
