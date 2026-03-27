@@ -1,4 +1,4 @@
 {
-  "model": "qwen3.5:0.8b",
+  "model": "qwen3.5:2b",
   "double_check_ai_output": true
 }

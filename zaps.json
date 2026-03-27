@@ -1,4 +1,5 @@
 {
   "commit-msg": ["echo %g0(%o(git diff))"],
-  "fullpush": ["git add .", "git commit -m \"%0\"", "git push origin main"]
+  "fullpush": ["git add .", "git commit -m \"%g0(%o(git diff))\"", "git push origin main"],
+  "push": ["git add .", "git commit -m \"%0\"", "git push origin main"]
 }

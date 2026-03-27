@@ -6,7 +6,7 @@ import re
 import os
 
 
-DEFAULT_MODEL = "qwen3.5:0.8b"
+DEFAULT_MODEL = "qwen3.5:2b"
 ZAPS_FILE = "zaps.json"
 MCALLS_FILE = "mcalls.json"
 SETTINGS_FILE = "settings.json"
