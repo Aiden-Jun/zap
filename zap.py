@@ -198,7 +198,7 @@ def replace_g(cmd: str) -> str:
             if unreplaced:
                 print(f"[WARN] Unreplaced mcall args in prompt: {unreplaced}", file=sys.stderr)
 
-            ai_output = run_ai(prompt, current_model)
+            ai_output = run_ai(prompt, current_model).replace("\n", " ")
 
             if settings.get("double_check_ai_output"):
                 approval = input("[Double check] Approve AI output? [y/n]: ")
