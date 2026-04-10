@@ -1,7 +1,7 @@
 [project]
-name = "zap"
+name = "kron"
 version = "0.0.0"
 dependencies = ["clean-ollama"]
 
 [project.scripts]
-zap = "zap:main"
+kron = "kron:main"

@@ -7,7 +7,7 @@ import os
 
 
 DEFAULT_MODEL = "qwen3.5:2b"
-ZAPS_FILE = "zaps.json"
+ZAPS_FILE = "shortcuts.json"
 MCALLS_FILE = "mcalls.json"
 SETTINGS_FILE = "settings.json"
 
@@ -18,9 +18,9 @@ SETTINGS_PATH = os.path.join(_ZAP_DIR, SETTINGS_FILE)
 
 if os.path.exists(ZAPS_PATH):
     with open(ZAPS_PATH, "r") as f:
-        zaps = json.load(f)
+        shortcuts = json.load(f)
 else:
-    zaps = {}
+    shortcuts = {}
 
 if os.path.exists(MCALLS_PATH):
     with open(MCALLS_PATH, "r") as f:
@@ -217,12 +217,12 @@ def replace_g(cmd: str) -> str:
     return result
 
 
-def run_zap(name: str, args: list[str]):
-    if name not in zaps:
-        print(f"No zap named '{name}'")
+def run_shortcut(name: str, args: list[str]):
+    if name not in shortcuts:
+        print(f"No shortcut named '{name}'")
         return
 
-    for cmd in zaps[name]:
+    for cmd in shortcuts[name]:
         for i in sorted(range(len(args)), reverse=True):
             cmd = re.sub(rf"%{i}(?!\d)", lambda m: args[i], cmd)
 
@@ -239,12 +239,12 @@ def run_zap(name: str, args: list[str]):
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: zap <command> [args...]")
+        print("Usage: kron <command> [args...]")
         sys.exit(1)
 
-    zap_name = sys.argv[1]
-    zap_args = sys.argv[2:]
-    run_zap(zap_name, zap_args)
+    shortcut_name = sys.argv[1]
+    shortcut_args = sys.argv[2:]
+    run_shortcut(shortcut_name, shortcut_args)
 
 
 if __name__ == "__main__":

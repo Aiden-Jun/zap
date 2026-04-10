@@ -350,7 +350,7 @@ venv.bak/
 .mypy_cache/
 .dmypy.json
 dmypy.json
-zap.egg-info
+kron.egg-info
 # Pyre type checker
 .pyre/
 

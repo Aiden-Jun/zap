@@ -1,6 +1,6 @@
-# zap - Shell Orchestrator
+# kron - Shell Orchestrator
 
-zap is a lightweight automation engine that can turn complex shell command chains into simple reusable shortcuts. It allows you to define workflows in JSON that support dynamic arguments, command nesting, and variable substitution.
+kron is a lightweight automation engine that can turn complex shell command chains into simple reusable shortcuts. It allows you to define workflows in JSON that support dynamic arguments, command nesting, and variable substitution.
 
 It also includes AI integration. This can be used to automatically name git commits as an example. The tool is designed to be flexible.
 
@@ -13,9 +13,9 @@ It also includes AI integration. This can be used to automatically name git comm
 
 ## Installation and setup
 
-To install, first clone the repository, and make zap.py executable or add it to your PATH.
+To install, first clone the repository, and make kron.py executable or add it to your PATH.
 ```bash
-git clone https://github.com/Aiden-Jun/zap.git
+git clone https://github.com/Aiden-Jun/kron.git
 ```
 
 MacOS
@@ -34,9 +34,9 @@ In `settings.json`, edit the `model` variable to whatever Ollama model you want 
 
 ## Usage
 
-### Create a zap
+### Create a shortcut
 
-In `zaps.json`, add a new entry with your zap name as the key and an array of commands as the value:
+In `shortcuts.json`, add a new entry with your shortcut name as the key and an array of commands as the value:
 
 ```json
 {
@@ -49,7 +49,7 @@ In `zaps.json`, add a new entry with your zap name as the key and an array of co
 
 Then run it with:
 ```bash
-zap myzap
+kron myshortcut
 ```
 
 
@@ -57,7 +57,7 @@ zap myzap
 
 ### Arguments
 
-**`%0`, `%1`, `%2`, etc** are positional arguments passed to the zap.
+**`%0`, `%1`, `%2`, etc** are positional arguments passed to the shortcut.
 
 ```json
 {
@@ -65,7 +65,7 @@ zap myzap
 }
 ```
 ```bash
-zap greet World
+kron greet World
 ```
 
 
@@ -79,7 +79,7 @@ zap greet World
 }
 ```
 ```bash
-zap pwd-labeled
+kron pwd-labeled
 ```
 
 The output of the nested command is captured and inserted into the parent command.
@@ -99,7 +99,7 @@ Define a mcall in `mcalls.json`:
 }
 ```
 
-Use it in a zap:
+Use it in a shortcut:
 ```json
 {
   "commit-msg": ["echo %g0(%o(git diff))"]
@@ -107,16 +107,16 @@ Use it in a zap:
 ```
 ```bash
 git add .
-zap commit-msg
+kron commit-msg
 ```
 
-This can be taken further by making an all-in-one zap.
+This can be taken further by making an all-in-one shortcut.
 
 
 ## Processing Order
 
 Commands are processed in this order:
 
-1. **Argument substitution** (`%0`, `%1`, etc.) - replaced with zap arguments
+1. **Argument substitution** (`%0`, `%1`, etc.) - replaced with shortcut arguments
 2. **AI calls** (`%gN(...)`) - processed before shell execution, allowing AI output to be used as shell arguments
 3. **Shell execution** (`%o(...)`) - shell commands run last
